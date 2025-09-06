@@ -31,13 +31,13 @@ jobs:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
           curl "$deploy_url"
-      - name: Test Success
-        uses: rjstone/discord-webhook-notify@v2
-        if: success()
-        with:
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-            severity: info
-            details: All tests passed!
+      # - name: Test Success
+      #   uses: rjstone/discord-webhook-notify@v2
+      #   if: success()
+      #   with:
+      #       webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      #       severity: info
+      #       details: All tests passed!
 
   tag_release:
     needs: [simple_deployment_pipeline]

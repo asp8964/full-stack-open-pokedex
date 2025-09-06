@@ -1,0 +1,20 @@
+name: Discord Hook
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  simple_deployment_pipeline:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Test Success
+          uses: rjstone/discord-webhook-notify@v2
+          with:
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+              severity: info
+              details: All tests passed!
