@@ -1,4 +1,4 @@
-name: Discord Hook
+name: Discord Hook Test
 
 on:
   push:
@@ -9,18 +9,18 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  simple_deployment_pipeline:
+  discord_webhook_test:
     runs-on: ubuntu-latest
     steps:
+        - name: Discord notification
+          env:
+            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          uses: Ilshidur/action-discord@0.4.0
+          with:
+            args: 'The project has been deployed v3.'
         - name: Test Success
           uses: rjstone/discord-webhook-notify@v2.2.1
           with:
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
               severity: info
               details: All tests passed!
-        - name: Discord notification
-          env:
-            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          uses: Ilshidur/action-discord@0.4.0
-          with:
-            args: 'The project has been deployed.'
