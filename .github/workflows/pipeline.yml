@@ -36,10 +36,8 @@ jobs:
         if: success()
         with:
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-            username: Github
             severity: info
-            text: A new version of Pokedex deployed
-            details: Pushed ${{join(github.event.commits.*.message, ',')}}
+            details: All tests passed!
 
   tag_release:
     needs: [simple_deployment_pipeline]
