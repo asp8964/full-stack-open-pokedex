@@ -18,3 +18,9 @@ jobs:
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
               severity: info
               details: All tests passed!
+        - name: Discord notification
+          env:
+            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          uses: Ilshidur/action-discord@0.4.0
+          with:
+            args: 'The project has been deployed.'
