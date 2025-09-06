@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Test Success
-          uses: rjstone/discord-webhook-notify@v2
+          uses: rjstone/discord-webhook-notify@v2.2.1
           with:
               webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
               severity: info
