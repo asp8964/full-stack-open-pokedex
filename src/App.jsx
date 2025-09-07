@@ -23,7 +23,7 @@ const App = () => {
     return <ErrorMessage error={error} />
   }
 
-  let next = null;
+  let next = null
   let previous = null
 
   if (match && match.params) {
