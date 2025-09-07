@@ -1,0 +1,38 @@
+name: Discord Hook Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  discord_webhook_test:
+    runs-on: ubuntu-latest
+    steps:
+        # - name: Discord notification
+        #   env:
+        #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        #   uses: Ilshidur/action-discord@0.4.0
+        #   with:
+        #     args: 'The project has been deployed v3.'
+        - name: Test Success
+          uses: rjstone/discord-webhook-notify@v2.2.1
+          with:
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+            severity: info
+            details: All tests passed!
+        - name: Another Test
+          uses: sarisia/actions-status-discord@v1
+          with:
+            webhook: ${{ secrets.DISCORD_WEBHOOK }}
+            nodetail: true
+            content: A new version of `Pokedex` deployed
+            title: commit
+            description: check success
+            color: 0x0000ff
+
+
+
