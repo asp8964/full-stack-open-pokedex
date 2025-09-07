@@ -31,13 +31,25 @@ jobs:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
           curl "$deploy_url"
-      # - name: Test Success
-      #   uses: rjstone/discord-webhook-notify@v2
-      #   if: success()
-      #   with:
-      #       webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      #       severity: info
-      #       details: All tests passed!
+      - name: Discord Notify
+        uses: sarisia/actions-status-discord@v1
+        if: success()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          nodetail: true
+          content: A new version of `Pokedex` deployed
+          title: commit
+          description: check success
+      - name: Discord Notify
+        uses: sarisia/actions-status-discord@v1
+        if: ${{!success()}}
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          nodetail: true
+          content: Check fail
+          title: commit
+          description: ${{github.event.pull_request.node_id}} works fail
+          color: 0xff91a4
 
   tag_release:
     needs: [simple_deployment_pipeline]
