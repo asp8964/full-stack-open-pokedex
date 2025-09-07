@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - dev
   pull_request:
     branches: [main]
     types: [opened, synchronize]
@@ -28,3 +29,10 @@ jobs:
           uses: sarisia/actions-status-discord@v1
           with:
             webhook: ${{ secrets.DISCORD_WEBHOOK }}
+            nodetail: true
+            content: A new version of `Pokedex` deployed
+            title: commit
+            description: ${{join(github.event.commits.*.message, ',')}} check success
+
+
+
