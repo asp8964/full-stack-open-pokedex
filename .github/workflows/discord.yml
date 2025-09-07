@@ -32,7 +32,8 @@ jobs:
             nodetail: true
             content: A new version of `Pokedex` deployed
             title: commit
-            description: ${{join(github.event.commits.*.message, ',')}} check success
+            description: check success
+            color: 0x0000ff
 
 
 
