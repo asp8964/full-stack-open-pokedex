@@ -1,7 +1,7 @@
 name: Url Health Check
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron:  '0 0 * * SAT'
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
